@@ -1,3 +1,4 @@
+import { storageKeys } from "@/config/storageKeys";
 import { AuthServices, type ISignInDTO } from "@/services/AuthServices";
 import { createContext, useCallback, useState, type ReactNode } from "react";
 
@@ -20,6 +21,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (email !== "marcos@gmail.com") {
       throw new Error("User not found");
     }
+    localStorage.setItem(storageKeys.ACCESS_TOKEN, "NOVO-TOKEN");
     setSignedIn(true);
     await AuthServices.signIn({ email, password });
     return;

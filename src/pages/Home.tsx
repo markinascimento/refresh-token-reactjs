@@ -1,12 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
+import axios from "axios";
 import { useEffect } from "react";
 
 export function Home() {
   const { signOut } = useAuth();
 
   useEffect(() => {
-    console.log("home renderized");
+    (async () => {
+      const { data } = await axios.get("https://rickandmortyapi.com/api");
+      console.log({ data });
+    })();
   }, []);
 
   return (
