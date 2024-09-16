@@ -1,7 +1,7 @@
+import { useAuth } from "@/hooks/useAuth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { schemaForm, type FormSchema } from "./schema";
-import { useAuth } from "@/hooks/useAuth";
 
 export function useSignInController() {
   const { signIn } = useAuth();
@@ -11,11 +11,7 @@ export function useSignInController() {
   });
 
   const handleSubmit = handleFormSubmit(async (data) => {
-    try {
-      await signIn(data);
-    } catch (error) {
-      console.log({ error });
-    }
+    await signIn(data);
   });
 
   return {
